@@ -1,5 +1,12 @@
-function App() {
-  return <div className="App">5555</div>;
-}
+import React from "react";
+import LogIn from "./Pages/LogIn/Login";
+
+const App = () => {
+  return (
+    <>
+      <LogIn />
+    </>
+  );
+};
 
 export default App;

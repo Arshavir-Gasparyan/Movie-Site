@@ -5,7 +5,11 @@ import { Container, Button } from "@material-ui/core";
 import { initialValues,validationSchema } from "../../helper/validationSchema";
 import styles from './LogIn.module.css'
 
+import { useHistory } from "react-router";
+
+
 const LogIn = () => {
+  const history = useHistory()
   return (
     <Container maxWidth="xs" style={{ marginTop: "10%", fontSize: "25px" }}>
       <h3 style={{ marginLeft: "26%" }}>Registration</h3>
@@ -13,7 +17,8 @@ const LogIn = () => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values, { resetForm }) => {
-             console.log(values)
+            history.push('/movies')
+            localStorage.setItem("user",JSON.stringify(values))
             resetForm();
         }}
       >

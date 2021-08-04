@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getMovieById } from "../../helper/Api";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -29,13 +29,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MovieDetail = (props) => {
+const MovieDetail = () => {
   const classes = useStyles();
   const [currMovie, setCurrMovie] = useState(false);
   const [name, setName] = useState("");
+
+  const [isFavorite, setIsFavorite] = useState(false);
   console.log("555", currMovie);
   const { id } = useParams();
 
+  const addToFavorite = () => {
+    const favorites = JSON.parse(localStorage.getItem("favorites"));
+    favorites.push(currMovie);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  };
   useEffect(() => {
     getMovieById(id).then((data) => {
       setCurrMovie(data);
@@ -64,8 +71,12 @@ const MovieDetail = (props) => {
                 <Typography gutterBottom variant="subtitle1">
                   {currMovie.original_title}
                 </Typography>
-                <Button variant="outlined" color="primary">
-                  Add Favorit
+                <Button
+                  onClick={(id) => addToFavorite(id)}
+                  variant="outlined"
+                  color="primary"
+                >
+                  <Link to="/favorite">Add favorite</Link>
                 </Button>
                 <p>{currMovie.overview}</p>
                 <h2>Countries</h2>

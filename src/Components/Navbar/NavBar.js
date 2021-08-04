@@ -83,7 +83,7 @@ export default function SearchAppBar({ movieName, onHandleChange }) {
             Films
           </Typography>
           <Typography className={classes.title} variant="h6" noWrap>
-            Films
+            Favorite
           </Typography>
 
           <div className={classes.search}>

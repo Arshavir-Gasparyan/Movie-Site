@@ -1,21 +1,40 @@
 import React from "react";
 import Movie from "../HomePage/home";
 import { useEffect, useState } from "react";
+import SearchAppBar from "../../Components/Navbar/NavBar";
+import { getMoviesByPage, getMoviesByQuery } from "../../helper/Api";
 
 const Movies = () => {
   const [movieData, setMovieData] = useState([]);
+  const [movieName, setMovieName] = useState("");
+
+  const onHandleChange = (el) => {
+    setMovieName(el.target.value);
+  };
 
   useEffect(() => {
-    const page = 1;
-    const url = `https://api.themoviedb.org/3/movie/popular?api_key=e8e227add2a2e5c168f7c3845928d8db&language=en-US&page=${page}`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
+    if (movieName) {
+      getMoviesByQuery(movieName).then((data) => {
         setMovieData(data.results);
-        console.log(data);
       });
-  }, []);
+    } else {
+      getMoviesByPage(1).then((res) => {
+        setMovieData(res.results);
+      });
+    }
+  }, [movieName]);
 
-  return <div>{movieData.length < 1 ? null : <Movie data={movieData} />}</div>;
+  useEffect(() => {
+    getMoviesByPage(1).then((res) => {
+      setMovieData(res.results);
+    });
+  }, []);
+  console.log(movieData);
+  return (
+    <div>
+      <SearchAppBar onHandleChange={onHandleChange} movieName={movieName} />
+      {movieData.length < 1 ? null : <Movie data={movieData} />}
+    </div>
+  );
 };
 export default Movies;

@@ -63,11 +63,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchAppBar() {
+export default function SearchAppBar({ movieName, onHandleChange }) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
+      <p>{}</p>
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -90,7 +91,9 @@ export default function SearchAppBar() {
               <SearchIcon />
             </div>
             <InputBase
-              placeholder="Search…"
+              value={movieName}
+              onChange={onHandleChange}
+              placeholder="Search Movies"
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,

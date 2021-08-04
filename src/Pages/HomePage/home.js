@@ -4,7 +4,7 @@ import { Card, Button } from "react-bootstrap";
 import styles from "./movie.module.css";
 
 const Movie = ({ data }) => {
-  console.log("data", data);
+  // console.log("data", data);
   const history = useHistory();
   return (
     <div className={styles.cards}>

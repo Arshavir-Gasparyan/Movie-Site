@@ -1,9 +1,10 @@
 import React from "react";
 import LogIn from "./Pages/LogIn/LogIn";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Movies from "./Pages/movies/movies";
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import Movies from "./Pages/Movies/Movies";
+import SearchAppBar from "./Components/Navbar/NavBar";
+import MovieDetail from "./Pages/movieDetail/movieDetail";
 
 const App = () => {
   return (
@@ -14,8 +15,10 @@ const App = () => {
             <LogIn />
           </Route>
           <Route exact path="/movies">
+            <SearchAppBar />
             <Movies />
           </Route>
+          <Route path="/movie/:id" children={<MovieDetail />} />
         </Switch>
       </Router>
     </>

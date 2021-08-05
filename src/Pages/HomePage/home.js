@@ -4,7 +4,6 @@ import { Card, Button } from "react-bootstrap";
 import styles from "./movie.module.css";
 
 const Movie = ({ data }) => {
-  // console.log("data", data);
   const history = useHistory();
   return (
     <div className={styles.cards}>
@@ -12,6 +11,8 @@ const Movie = ({ data }) => {
         return (
           <Card
             style={{
+              backgroundColor: "#2F4F4F",
+              color: "#DCDCDC",
               width: "12rem",
               margin: "30px",
               height: "300px",
@@ -32,7 +33,14 @@ const Movie = ({ data }) => {
               </Card.Title>
               {/* <Card.Text>{movie.overview}</Card.Text> */}
               <Button
-                style={{ position: "absolute", bottom: "0", right: "30px" }}
+                style={{
+                  position: "absolute",
+                  bottom: "0",
+                  right: "30px",
+                  background: "#696969",
+                  "&:hover": { background: "red" },
+                  borderColor: "#696969",
+                }}
                 variant="primary"
               >
                 Go somewhere

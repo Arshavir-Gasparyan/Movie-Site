@@ -33,12 +33,13 @@ const MovieDetail = () => {
   const classes = useStyles();
   const [currMovie, setCurrMovie] = useState(false);
   const [name, setName] = useState("");
-
+  const [buttonText, setButtonText] = useState("Next");
   const [isFavorite, setIsFavorite] = useState(false);
   console.log("555", currMovie);
   const { id } = useParams();
 
-  const addToFavorite = () => {
+  const addToFavorite = (text) => {
+    setButtonText(text);
     const favorites = JSON.parse(localStorage.getItem("favorites"));
     favorites.push(currMovie);
     localStorage.setItem("favorites", JSON.stringify(favorites));
@@ -71,27 +72,18 @@ const MovieDetail = () => {
                 <Typography gutterBottom variant="subtitle1">
                   {currMovie.original_title}
                 </Typography>
-                <Button
-                  onClick={(id) => addToFavorite(id)}
-                  variant="outlined"
-                  color="primary"
-                >
-                  <Link to="/favorite">Add favorite</Link>
-                </Button>
                 <p>{currMovie.overview}</p>
                 <h2>Countries</h2>
                 <p>{name}</p>
-                <Typography variant="body2" gutterBottom>
-                  Full resolution 1920x1080 • JPEG
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
-                  ID: 1030114
-                </Typography>
               </Grid>
               <Grid item>
-                <Typography variant="body2" style={{ cursor: "pointer" }}>
-                  Remove
-                </Typography>
+                <Button
+                  onClick={() => addToFavorite("newtext")}
+                  variant="outlined"
+                  color="primary"
+                >
+                  <Link>{buttonText}</Link>
+                </Button>
               </Grid>
             </Grid>
             <Grid item>

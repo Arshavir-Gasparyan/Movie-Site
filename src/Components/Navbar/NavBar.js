@@ -69,21 +69,16 @@ export default function SearchAppBar({ movieName, onHandleChange }) {
   return (
     <div className={classes.root}>
       <p>{}</p>
-      <AppBar position="static">
+      <AppBar
+        style={{ backgroundColor: "#2F4F4F", color: "#DCDCDC" }}
+        position="static"
+      >
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Films
-          </Typography>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Favorite
+            <span style={{ marginLeft: "50px", cursor: "pointer" }}>Films</span>
+            <span style={{ marginLeft: "100px", cursor: "pointer" }}>
+              Favorite
+            </span>
           </Typography>
 
           <div className={classes.search}>
@@ -91,6 +86,7 @@ export default function SearchAppBar({ movieName, onHandleChange }) {
               <SearchIcon />
             </div>
             <InputBase
+              style={{ marginRight: "250px" }}
               value={movieName}
               onChange={onHandleChange}
               placeholder="Search Movies"
